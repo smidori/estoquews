@@ -2,7 +2,7 @@ package br.com.caelum.estoque.modelo.item;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+//@XmlRootElement - dá erro no ws, pois fica ws:item e não passa o valor pelo parametro
 public class Item {
 
 	private String codigo;
