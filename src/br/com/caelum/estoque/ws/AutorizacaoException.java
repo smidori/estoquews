@@ -17,6 +17,7 @@ public class AutorizacaoException extends Exception {
 	
 	public InfoFault getFaultInfo(){
 		//return "Token Inválido";
+		//teste de commit
 		return new InfoFault("Token invalido" , new Date());
 	}
 	
