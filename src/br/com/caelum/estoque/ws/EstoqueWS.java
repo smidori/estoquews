@@ -6,17 +6,23 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.ParameterStyle;
+import javax.jws.soap.SOAPBinding.Style;
+import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.ws.ResponseWrapper;
 
 import br.com.caelum.estoque.modelo.item.Filtro;
 import br.com.caelum.estoque.modelo.item.Filtros;
 import br.com.caelum.estoque.modelo.item.Item;
 import br.com.caelum.estoque.modelo.item.ItemDao;
+import br.com.caelum.estoque.modelo.item.ItemValidador;
 import br.com.caelum.estoque.modelo.usuario.TokenDao;
 import br.com.caelum.estoque.modelo.usuario.TokenUsuario;
 
 //@WebService(name="UlaUla")
 @WebService
+@SOAPBinding(style=Style.DOCUMENT, use=Use.LITERAL, parameterStyle=ParameterStyle.WRAPPED)
 public class EstoqueWS {
 
 	private ItemDao dao = new ItemDao();
@@ -75,6 +81,9 @@ public class EstoqueWS {
 	    if(!new TokenDao().ehValido(token)) {
 	        throw new AutorizacaoException("Autorizacao falhou");
 	    }
+	    
+	    //novo
+        new ItemValidador(item).validate();
 	    
 	    this.dao.cadastrar(item);
 	    return item;

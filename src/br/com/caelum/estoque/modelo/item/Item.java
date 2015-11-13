@@ -1,13 +1,25 @@
 package br.com.caelum.estoque.modelo.item;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 //@XmlRootElement - dá erro no ws, pois fica ws:item e não passa o valor pelo parametro
+@XmlRootElement(name="item")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
 
+	@XmlElement(required=true)
 	private String codigo;
+	
+	@XmlElement(required=true)
 	private String nome;
+	
+	@XmlElement(required=true)
 	private String tipo;
+	
+	@XmlElement(required=true)
 	private int quantidade;
 
 	Item() {
